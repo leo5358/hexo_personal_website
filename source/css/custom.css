@@ -292,25 +292,37 @@ body {
   font-variant-ligatures: contextual !important; 
 }
 
-/* scrollbar */
-/* 1. 捲軸整體的寬度與高度 (直式與橫式) */
-::-webkit-scrollbar {
-  width: 8px !important;
-  height: 8px !important;
-}
+  /* scrollbar */
+  /* 1. 捲軸整體的寬度與高度 (直式與橫式) */
+  ::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+  }
 
-/* 2. 捲軸的軌道背景 (讓它與你的 #1a1a1a 深色背景無縫融合) */
-::-webkit-scrollbar-track {
-  background: #1a1a1a !important; 
-}
+  /* 2. 捲軸的軌道背景 (讓它與你的 #1a1a1a 深色背景無縫融合) */
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a !important; 
+  }
 
-/* 3. 捲軸本體 (預設為低調的深灰色，並加上圓角讓視覺更柔和) */
-::-webkit-scrollbar-thumb {
-  background: #444444 !important;
-  border-radius: 4px !important;
-}
+  /* 3. 捲軸本體 (預設為低調的深灰色，並加上圓角讓視覺更柔和) */
+  ::-webkit-scrollbar-thumb {
+    background: #444444 !important;
+    border-radius: 4px !important;
+  }
 
-/* 4. 滑鼠移過去時的視覺回饋 (點綴你的專屬珊瑚橘) */
-::-webkit-scrollbar-thumb:hover {
-  background: #eb6b56 !important;
-}
+  /* 4. 滑鼠移過去時的視覺回饋 (點綴你的專屬珊瑚橘) */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #eb6b56 !important;
+  }
+
+  /*word select*/
+  ::selection {
+    background-color: #eb6b56 !important; /* 你的專屬珊瑚橘 */
+    color: #ffffff !important; /* 純白文字確保高對比 */
+  }
+
+  /* 針對 Firefox 的特別支援 */
+  ::-moz-selection {
+    background-color: #eb6b56 !important;
+    color: #ffffff !important;
+  }
