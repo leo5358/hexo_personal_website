@@ -1,0 +1,135 @@
+/* ======================================================
+   Zen Browser 風格最終修正 - 找回程式碼高亮
+   ====================================================== */
+
+   :root {
+    --global-bg: #1a1a1a;        /* Zen 深色背景 */
+    --card-bg: #242424;          /* 卡片背景 */
+    --font-color: #e0e0e0;       /* 基礎文字顏色 */
+    --highlight-bg: #1d1d1d;     /* 程式碼區塊背景 */
+  }
+  
+  /* 1. 基礎背景與文字 */
+  body {
+    background-color: var(--global-bg) !important;
+    /* 移除 !important，避免強勢覆蓋到 highlight 區塊內的 span */
+    color: var(--font-color); 
+  }
+  
+  /* 2. 強制修正標題顏色 */
+  #article-container h1, 
+  #article-container h2, 
+  #article-container h3, 
+  #article-container h4, 
+  #article-container h5, 
+  #article-container h6 {
+    color: #ffffff !important;
+    font-weight: 600;
+  }
+  
+  /* 3. 程式碼區塊 (Code Block) 深度客製化 */
+  #article-container figure.highlight {
+    background-color: var(--highlight-bg) !important;
+    border: 1px solid #333 !important;
+    border-radius: 8px !important;
+    margin: 20px 0 !important;
+    line-height: 1.6 !important;
+  }
+  
+  /* 程式碼左側行號區 */
+  #article-container figure.highlight .gutter {
+    background-color: #161616 !important;
+    color: #555 !important;
+    border-right: 1px solid #333 !important;
+  }
+  
+  /* 程式碼主要內容區 */
+  #article-container figure.highlight .code {
+    background-color: var(--highlight-bg) !important;
+  }
+  
+  /* (已移除會覆蓋 span 顏色的程式碼，讓高亮引擎全面接管) */
+  
+  /* 4. Leetcode 關鍵字 (Inline Code) */
+  #article-container :not(pre) > code {
+    color: #eb6b56 !important; /* Zen 珊瑚橘 */
+    background: rgba(235, 107, 86, 0.1) !important;
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  #web_bg {
+    /* 替換成你的圖片路徑，若放在 source/img/ 下，路徑如下： */
+    background-image: url('/img/background.jpg') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    
+    /* 讓背景固定，滾動網頁時會有平滑的視差效果 */
+    background-attachment: fixed !important; 
+  }
+  
+  /* 利用偽元素疊加一層深色遮罩，完美融合 var(--global-bg) */
+  #web_bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* 這裡的 26, 26, 26 就是 #1a1a1a 的 RGB 數值 */
+    /* 0.85 代表 85% 的不透明度，你可以根據圖片亮度微調 (範圍 0.1 ~ 0.9) */
+    background: rgba(26, 26, 26, 0.85) !important; 
+    z-index: -1;
+  }
+  
+  /* 可選：讓文章卡片稍微透出背景，增加層次感 */
+  #aside-content .card-widget,
+  #recent-posts > .recent-post-item,
+  .layout > div:first-child:not(.recent-posts) {
+    /* 讓卡片背景 #242424 帶有 90% 不透明度 */
+    background: rgba(36, 36, 36, 0.9) !important; 
+    backdrop-filter: blur(5px); /* 毛玻璃模糊效果 */
+    border: 1px solid #333; /* 加上細邊框讓卡片更立體 */
+  }
+
+  #article-container figure.highlight table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+  
+  #article-container figure.highlight .code {
+    width: 100% !important;
+  }
+  
+  #article-container figure.highlight pre {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* ======================================================
+   導覽列 (Navbar) Zen Browser 質感優化
+   ====================================================== */
+
+/* 讓導覽列帶有深色半透明與毛玻璃效果 */
+  #page-header.nav-fixed #nav,
+  #page-header.not-top-img #nav {
+    background: rgba(26, 26, 26, 0.85) !important; /* 配合你的全局背景 */
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important; /* 極細的底部反光線條 */
+  }
+
+  /* 確保導覽列文字預設為淺色 */
+  #page-header #nav .menus_items .menus_item a,
+  #page-header #nav .blog_name {
+    color: var(--font-color) !important;
+    text-shadow: none !important; /* 移除預設的文字陰影以保持極簡 */
+  }
+
+/* Hover 時切換為 Zen 珊瑚橘 */
+  #page-header #nav .menus_items .menus_item a:hover,
+  #page-header #nav .blog_name:hover {
+    color: #eb6b56 !important;
+    transition: color 0.3s ease;
+  }
