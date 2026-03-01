@@ -1,12 +1,13 @@
-/* ======================================================
-   Zen Browser 風格最終修正 - 找回程式碼高亮
-   ====================================================== */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
 
    :root {
     --global-bg: #1a1a1a;        /* Zen 深色背景 */
     --card-bg: #242424;          /* 卡片背景 */
     --font-color: #e0e0e0;       /* 基礎文字顏色 */
     --highlight-bg: #1d1d1d;     /* 程式碼區塊背景 */
+
+    --global-font: 'Noto Sans TC', -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+    --font-monospace: 'JetBrains Mono', Consolas, Monaco, monospace !important;
   }
   
   /* 1. 基礎背景與文字 */
@@ -133,3 +134,183 @@
     color: #eb6b56 !important;
     transition: color 0.3s ease;
   }
+
+  /* 1. 首頁文章標題 */
+  a.article-title {
+    color: #e0e0e0 !important; 
+    text-decoration: none !important;
+  }
+  a.article-title:hover {
+    color: #eb6b56 !important;
+  }
+
+  /* 2. 側邊欄作者數據 (Articles, Tags, Categories 的數字與文字) */
+  .card-info-data .card-info-data-item a,
+  .card-info-data .card-info-data-item a div {
+    color: #e0e0e0 !important;
+  }
+  .card-info-data .card-info-data-item a:hover,
+  .card-info-data .card-info-data-item a:hover div {
+    color: #eb6b56 !important;
+  }
+
+  /* 3. 側邊欄標籤雲等其他文字超連結 (安全排除你的 Follow Me 按鈕) */
+  #aside-content .card-widget a:not([class*="button"]) {
+    color: #e0e0e0 !important;
+  }
+  #aside-content .card-widget a:not([class*="button"]):hover {
+    color: #eb6b56 !important;
+  }
+
+  /* 4. 文章日期與 Meta 小圖示 (讓它變成低調的次要灰色) */
+  .article-meta-wrap,
+  .article-meta-wrap a,
+  .article-meta-wrap i {
+    color: #888888 !important;
+  }
+
+  #footer {
+    background: #1a1a1a !important; /* 配合全局深色背景 */
+    color: #888888 !important;
+    border-top: 1px solid #333 !important; /* 加上極簡分隔線 */
+  }
+  #footer a {
+    color: #e0e0e0 !important;
+  }
+  #footer a:hover {
+    color: #eb6b56 !important;
+  }
+  #footer::before {
+    display: none !important; /* 移除預設的透明漸層干擾 */
+  }
+
+/* 1. 更改程式碼區塊的外框與主要背景 */
+#article-container figure.highlight {
+  background-color: #d1cfc0 !important;
+  border: 1px solid #b5b3a5 !important; /* 加上稍微深一點的邊框，讓它有點立體感 */
+}
+
+/* 2. 更改程式碼內容區的背景 */
+#article-container figure.highlight .code {
+  background-color: #d1cfc0 !important;
+}
+
+#article-container figure.highlight .code pre {
+  background-color: #d1cfc0 !important;
+}
+
+/* 3. 左側行號區 (Gutter) 的顏色微調 */
+#article-container figure.highlight .gutter {
+  /* 這裡我幫你配了一個比 #d1cfc0 稍微深一點點的同色系，讓行號區有層次感 */
+  /* 如果你想要行號區跟右邊完全一樣的顏色，也可以把這裡改成 #d1cfc0 */
+  background-color: #c4c2b3 !important; 
+  border-right: 1px solid #b5b3a5 !important;
+}
+
+/* 4. 如果上方有 Mac 視窗的標題列 (Highlight Tool) */
+#article-container figure.highlight .highlight-tools {
+  background-color: #c4c2b3 !important; /* 讓標題列也融入這個燕麥色系 */
+  color: #333 !important; /* 確保標題列的字是深色可見的 */
+  border-bottom: 1px solid #b5b3a5 !important;
+}
+
+/* ======================================================
+   為 #d1cfc0 燕麥底色量身打造的語法高亮 (修正版)
+   ====================================================== */
+
+/* 1. 基礎文字顏色 (只設定外層，放過內部的 span！) */
+#article-container figure.highlight .code pre {
+  color: #383a42 !important; 
+}
+
+/* 2. 註解 (Comments) */
+#article-container figure.highlight .code pre .comment,
+#article-container figure.highlight .code pre .quote {
+  color: #8a8575 !important; 
+  font-style: italic !important;
+}
+
+/* 3. 關鍵字 (Keywords - 如 class, public, if, for) */
+#article-container figure.highlight .code pre .keyword,
+#article-container figure.highlight .code pre .selector-tag,
+#article-container figure.highlight .code pre .addition {
+  color: #e45649 !important; 
+  font-weight: 600 !important;
+}
+
+/* 4. 字串與字元 (Strings - 如 "hello") */
+#article-container figure.highlight .code pre .string,
+#article-container figure.highlight .code pre .meta .meta-string,
+#article-container figure.highlight .code pre .doctag,
+#article-container figure.highlight .code pre .regexp {
+  color: #50a14f !important; 
+}
+
+/* 5. 數字與布林值 (Numbers, Booleans) */
+#article-container figure.highlight .code pre .number,
+#article-container figure.highlight .code pre .literal,
+#article-container figure.highlight .code pre .variable,
+#article-container figure.highlight .code pre .template-variable {
+  color: #986801 !important; 
+}
+
+/* 6. 函數名稱與屬性 (Functions - 如 minOperations) */
+#article-container figure.highlight .code pre .title,
+#article-container figure.highlight .code pre .section,
+#article-container figure.highlight .code pre .name,
+#article-container figure.highlight .code pre .selector-id,
+#article-container figure.highlight .code pre .selector-class {
+  color: #4078f2 !important; 
+}
+
+/* 7. 內建型別與類別 (Built-in types - 如 vector, int) */
+#article-container figure.highlight .code pre .type,
+#article-container figure.highlight .code pre .built_in,
+#article-container figure.highlight .code pre .class .title {
+  color: #a626a4 !important; 
+}
+
+/* 8. 確保左上方語言名稱 (如 CPP) 文字顏色夠深 */
+#article-container figure.highlight .highlight-tools .code-lang {
+  color: #555555 !important;
+  font-weight: bold !important;
+}
+
+body {
+  font-family: var(--global-font) !important;
+}
+
+/* 2. 程式碼區塊與 Inline Code 套用 JetBrains Mono，並開啟連字效果 */
+#article-container figure.highlight,
+#article-container figure.highlight .code pre,
+#article-container figure.highlight .code pre span,
+#article-container figure.highlight .gutter,
+#article-container :not(pre) > code {
+  font-family: var(--font-monospace) !important;
+  
+  /* 連字！ */
+  font-variant-ligatures: contextual !important; 
+}
+
+/* scrollbar */
+/* 1. 捲軸整體的寬度與高度 (直式與橫式) */
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+/* 2. 捲軸的軌道背景 (讓它與你的 #1a1a1a 深色背景無縫融合) */
+::-webkit-scrollbar-track {
+  background: #1a1a1a !important; 
+}
+
+/* 3. 捲軸本體 (預設為低調的深灰色，並加上圓角讓視覺更柔和) */
+::-webkit-scrollbar-thumb {
+  background: #444444 !important;
+  border-radius: 4px !important;
+}
+
+/* 4. 滑鼠移過去時的視覺回饋 (點綴你的專屬珊瑚橘) */
+::-webkit-scrollbar-thumb:hover {
+  background: #eb6b56 !important;
+}

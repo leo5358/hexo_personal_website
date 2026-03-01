@@ -278,15 +278,15 @@ footer:
 aside:
   enable: true
   hide: false
-  # Show the button to hide the aside in bottom right button
   button: true
   mobile: true
-  # Position: left / right
   position: right
   display:
     archive: true
     tag: true
     category: true
+    
+  # 👇 保留：作者基本資訊與追蹤按鈕
   card_author:
     enable: true
     description:
@@ -294,69 +294,66 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/leo5358
+      
+  # 👇 保留：公告欄 (可留著寫一句簡短的座右銘)
   card_announcement:
     enable: true
     content: This is my Blog
+    
+  # ❌ 關閉：近期文章 (首頁已經有列表了，避免重複)
   card_recent_post:
-    enable: true
-    # If set 0 will show all
+    enable: false  
     limit: 5
-    # Sort: date / updated
     sort: date
     sort_order:
+    
   card_newest_comments:
     enable: false
     sort_order:
     limit: 6
-    # Unit: mins, save data to localStorage
     storage: 10
     avatar: true
+    
+  # ❌ 關閉：分類 (你在上方的導覽列 Navbar 已經做好了)
   card_categories:
-    enable: true
-    # If set 0 will show all
+    enable: false  
     limit: 8
-    # Choose: none / true / false
     expand: none
     sort_order:
+    
+  # 👇 保留：標籤雲 (對於技術部落格來說，標籤雲是很棒的快速篩選工具)
   card_tags:
     enable: true
-    # If set 0 will show all
     limit: 40
     color: false
     custom_colors:
-    # Order of tags, random/name/length
     orderby: random
-    # Sort of order. 1, asc for ascending; -1, desc for descending
     order: 1
     sort_order:
+    
+  # ❌ 關閉：歸檔 (同樣的，你的導覽列已經有這個功能了)
   card_archives:
-    enable: true
-    # Type: monthly / yearly
+    enable: false  
     type: monthly
-    # Eg: YYYY年MM月
     format: MMMM YYYY
-    # Sort of order. 1, asc for ascending; -1, desc for descending
     order: -1
-    # If set 0 will show all
     limit: 8
     sort_order:
+    
+  # ❌ 關閉：文章系列 (極簡風格不需要太多額外分類)
   card_post_series:
-    enable: true
-    # The title shows the series name
+    enable: false  
     series_title: false
-    # Order by title or date
     orderBy: 'date'
-    # Sort of order. 1, asc for ascending; -1, desc for descending
     order: -1
+    
+  # ❌ 關閉：網站資訊 (訪客數、文章數等數據對讀者來說是視覺干擾)
   card_webinfo:
-    enable: true
+    enable: false  
     post_count: true
     last_push_date: true
     sort_order:
-    # Time difference between publish date and now
-    # Formal: Month/Day/Year Time or Year/Month/Day Time
-    # Leave it empty if you don't enable this feature
     runtime_date:
 
 # --------------------------------------
